@@ -54,7 +54,6 @@ export class FilmService{
     const filmsInSpanish : Array<FilmSpanish | any> =  await this.filmDocument.find().exec().then(
         (films : FilmDocument[] ) => {
             
-            console.log(films);
             
             return MappingUtil.parseFilmDocumentArrayToArrayDto(films)
         }
@@ -68,9 +67,6 @@ export class FilmService{
     return filmsInSpanish;
   }
 
-  async findOne(idFilm : number) : Promise<FilmDocument>{
-    return this.filmDocument.findById(idFilm).exec()
-  }
 
   
 }
