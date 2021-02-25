@@ -1,0 +1,55 @@
+service: swapi-serverless
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  environment:
+    NODE_ENV: dev
+
+plugins:
+  - serverless-plugin-typescript 
+  - serverless-offline
+
+package:
+  include:
+    - config/.env
+  exclude:
+    - .editorconfig
+    - .git/**
+    - .gitignore
+    - README.md
+
+functions:
+  create:
+    handler: app/handler.create
+    events:
+      - http:
+          path: character/create
+          method: post
+  list:
+    handler: app/handler.list
+    events:
+      - http:
+          path: character/list
+          method: get
+  listSwapiItems:
+    handler: app/handler.listSwapiItems
+    events:
+      - http:
+          path: listSwapiItems/{model}
+          method: get
+          request:
+            parameters:
+              paths:
+                model: true
+  findSwapiItem:
+    handler: app/handler.findSwapiItem
+    events:
+      - http:
+          path: findSwapiItem/{model}/{id}
+          method: get
+          request: 
+            parameters:
+              paths:
+                id: true
+                model: true

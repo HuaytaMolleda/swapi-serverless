@@ -1,0 +1,4 @@
+name: swapi-serverless
+description: Deploys a Node REST API service with traditional Serverless Framework and Typescript
+keywords: aws, serverless, faas, lambda, node, typescript
+license: MIT
